@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #number{
+            border : 1px solid magenta;
+            background : pink;
+            color : blue;
+            padding : 5px;
+            width : 200px;
+            height : 70px;
+            text-align : center;
+        }
+        #first, #second, #third{
+            display : inline-block;
+            font-size : 50px;
+            padding : 0px;
+            height : 60px;
+            width : 50px;
+            margin : 5px;
+            font-style : italic;
+        }
+    </style>
+</head>
+<body id = "parent">
+    <h1>겜블링 게임</h1>
+    <p>각 숫자를 클릭하면 0에서 2사이의 난수로 바뀝니다. 모두 같은 수가 나오면 승리합니다.</p>
+    <hr>
+    <div id = "number"><p id = "first" onclick = "changeRandomFirst()">0 </p><p id = "second" onclick = "changeRandomSecond()">0 </p><p id = "third" onclick = "changeRandomThird()">0 </p></div>
+    <script>
+        function checkSame(){
+            let obj = document.getElementById("parent");
+            let firstNumber = document.getElementById("first");
+            let secondNumber = document.getElementById("second");
+            let thirdNumber = document.getElementById("third");
+            let newP = document.createElement("p");
+            newP.style.color = "magenta";
+            newP.style.fontStyle = "italic";
+            if(firstNumber.innerHTML == secondNumber.innerHTML && secondNumber.innerHTML == thirdNumber.innerHTML){
+                newP.innerHTML = "Success(click here to do again)";
+                newP.addEventListener("click", function(){
+                    let p = this.parentElement;
+                    p.removeChild(this);
+                    firstNumber.innerHTML = 0;
+                    secondNumber.innerHTML = 0;
+                    thirdNumber.innerHTML = 0;
+                });
+                obj.appendChild(newP);
+            }
+            else{
+                newP.innerHTML = "fail(click here to do again)";
+                newP.addEventListener("click", function(){
+                    let p = this.parentElement;
+                    p.removeChild(this);
+                    firstNumber.innerHTML = 0;
+                    secondNumber.innerHTML = 0;
+                    thirdNumber.innerHTML = 0;
+                });
+                obj.appendChild(newP);
+            }
+        }
+        function changeRandomFirst(){
+            let randomNumber = Math.random()*3;
+            let address = document.getElementById("first");
+            randomNumber = Math.floor(randomNumber);
+            address.innerHTML = randomNumber;
+        }
+        function changeRandomSecond(){
+            let randomNumber = Math.random()*3;
+            let address = document.getElementById("second");
+            randomNumber = Math.floor(randomNumber);
+            address.innerHTML = randomNumber;
+        }
+        function changeRandomThird(){
+            let randomNumber = Math.random()*3;
+            let address = document.getElementById("third");
+            randomNumber = Math.floor(randomNumber);
+            address.innerHTML = randomNumber;
+            checkSame();
+        }
+        
+        
+    </script>
+
+    
+</body>
+</html>
